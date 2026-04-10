@@ -1,0 +1,39 @@
+# --- Python Specific ---
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+.venv
+build/
+dist/
+*.egg-info/
+
+# --- Experiment Results ---
+# We keep processed results (tables/plots) but ignore raw heavy data
+results/raw/
+*.npy
+
+# --- LaTeX Specific (for the paper) ---
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.pdf
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+
+# --- OS/IDE Specific ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- Miscellaneous ---
+test_speed.py
+paper/figures/*.png
+!paper/figures/.gitkeep

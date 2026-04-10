@@ -1,0 +1,16 @@
+# ============================================================
+# requirements.txt — COA_Project
+# Install via:  pip install -r requirements.txt
+# ============================================================
+
+# Core scientific stack
+numpy>=1.24
+scipy>=1.10
+matplotlib>=3.7
+
+# CEC benchmark functions
+opfunu>=1.0.0
+
+# Notebook support (optional)
+jupyter>=1.0
+ipykernel>=6.0
