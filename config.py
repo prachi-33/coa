@@ -19,15 +19,18 @@ N_JOBS = max(1, multiprocessing.cpu_count() - 1)
 DIMENSIONS = [10, 30]
 
 # ── Benchmark Suites ──────────────────────────────────────────────────────────
-CEC2014_FUNCTIONS = list(range(1, 31))   # f1 – f30
-CEC2017_FUNCTIONS = list(range(1, 30))   # f1 – f29
+CEC2014_FUNCTIONS     = list(range(1, 31))   # f1 – f30
+CEC2017_FUNCTIONS     = list(range(1, 30))   # f1 – f29
+ENGINEERING_FUNCTIONS = list(range(1, 6))    # 5 problems: Spring, PV, WeldedBeam, SpeedReducer, Bearing
 LOWER_BOUND = -100.0
 UPPER_BOUND =  100.0
 
 # ── Experiment Settings ───────────────────────────────────────────────────────
-N_RUNS     = 30          # Independent runs per algorithm per function
+N_RUNS     = 30          # Independent runs per algorithm per function (CEC benchmarks)
+N_RUNS_ENG = 50          # Independent runs for engineering problems
 POPULATION = 30          # Swarm / population size
-MAX_FES    = 10_000      # Max function evaluations per run (set higher for real runs)
+MAX_FES    = 10_000      # Max FES per run for CEC benchmarks
+MAX_FES_ENG= 60_000      # Max FES per run for engineering problems (harder, more budget)
 # Recommended: MAX_FES = POPULATION * 1000  (e.g. 30000 for D=10, 100000 for D=30)
 
 # ── Algorithm Flags (set False to skip) ───────────────────────────────────────
@@ -59,13 +62,15 @@ REFERENCE_ALGO = "MCOA"    # Algorithm all others are compared against
 # ── Output Paths  (VERY IMPORTANT) ───────────────────────────────────────────
 BASE_DIR       = os.path.dirname(os.path.abspath(__file__))
 RESULTS_DIR    = os.path.join(BASE_DIR, "results")
-RAW_CEC2014    = os.path.join(RESULTS_DIR, "raw",       "cec2014")
-RAW_CEC2017    = os.path.join(RESULTS_DIR, "raw",       "cec2017")
-TABLES_DIR     = os.path.join(RESULTS_DIR, "processed", "tables")
-RANKINGS_DIR   = os.path.join(RESULTS_DIR, "processed", "rankings")
-CONV_DIR       = os.path.join(RESULTS_DIR, "plots",     "convergence")
-BOX_DIR        = os.path.join(RESULTS_DIR, "plots",     "boxplots")
+RAW_CEC2014     = os.path.join(RESULTS_DIR, "raw",       "cec2014")
+RAW_CEC2017     = os.path.join(RESULTS_DIR, "raw",       "cec2017")
+RAW_ENGINEERING = os.path.join(RESULTS_DIR, "raw",       "engineering")
+TABLES_DIR      = os.path.join(RESULTS_DIR, "processed", "tables")
+RANKINGS_DIR    = os.path.join(RESULTS_DIR, "processed", "rankings")
+CONV_DIR        = os.path.join(RESULTS_DIR, "plots",     "convergence")
+BOX_DIR         = os.path.join(RESULTS_DIR, "plots",     "boxplots")
 
 # Auto-create all output directories
-for _d in [RAW_CEC2014, RAW_CEC2017, TABLES_DIR, RANKINGS_DIR, CONV_DIR, BOX_DIR]:
+for _d in [RAW_CEC2014, RAW_CEC2017, RAW_ENGINEERING,
+           TABLES_DIR, RANKINGS_DIR, CONV_DIR, BOX_DIR]:
     os.makedirs(_d, exist_ok=True)
